@@ -1,0 +1,9 @@
+---
+- hosts: all
+  become: yes
+  name: "Set hostnames for all hosts"
+  tasks:
+  - name: Set hostname
+    shell: sudo hostnamectl set-hostname {{ inventory_hostname }}
+  - name: Renew DHCP
+    shell: sudo dhclient -r; sudo dhclient

@@ -1,0 +1,50 @@
+---
+- name: Prepare K8 Machines for RKE
+  hosts: k8s
+  become: yes
+  ignore_errors: yes
+  tasks:
+  
+  - name: Apt Update
+    apt:
+      update_cache: yes
+  
+  - name: Install Apt Packages
+    apt:
+      name:
+        - ca-certificates
+        - gnupg
+        - curl
+        - lsb-release
+        
+  - name: Add Docker GPG Key
+    shell: curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+    
+  - name: Setup stable rep
+    shell: echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+  
+  - name: Apt Update
+    apt:
+      update_cache: yes
+      
+  - name: Install Docker from Apt
+    apt:
+      name:
+        - docker-ce 
+        - docker-ce-cli 
+        - containerd.io
+        
+  - name: Disable SWAP
+    shell: swapoff -a
+    
+  - name: Create group for docker
+    group:
+      name: docker
+    register: group
+  
+  - name: Setup ansible user as part of docker group
+    user:
+      name: ansible
+      groups: docker
+      append: yes
+    register: docker_user
