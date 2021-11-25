@@ -1,0 +1,18 @@
+- name: Prepare K8 Machines for RKE
+  hosts: [k8s_workers, us20-k8c-02.dylanlab.xyz]
+  become: yes
+  ignore_errors: yes
+  tasks:
+
+  - name: pvresize
+    shell: pvresize /dev/xvda3
+
+  - name: lvextend
+    shell: lvextend -L +30G /dev/ubuntu-vg/ubuntu-lv
+  
+  - name: resize2fs
+    shell: resize2fs -p /dev/ubuntu-vg/ubuntu-lv
+  
+
+
+  
