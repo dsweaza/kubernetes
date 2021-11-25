@@ -36,6 +36,32 @@
         
   - name: Disable SWAP
     shell: swapoff -a
+
+  - name: Open TCP 6443
+    shell: iptables -A INPUT -p tcp --dport 6443 -j ACCEPT
+
+  - name: Configure sshd
+    lineinfile:
+      path: "/etc/ssh/sshd_config"
+      regex: "^(#)?{{item.key}}"
+      line: "{{item.key}} {{item.value}}"
+      state: present
+    loop:
+      - { key: "AllowTcpForwarding", value: "yes" }
+    notify:
+      - restart sshd
+
+  - name: Modify sysctl entries
+    sysctl:
+      name: '{{ item.key }}'
+      value: '{{ item.value }}'
+      sysctl_set: yes
+      state: present
+      reload: yes
+    with_items:
+      - {key: net.bridge.bridge-nf-call-ip6tables, value: 1}
+      - {key: net.bridge.bridge-nf-call-iptables,  value: 1}
+      - {key: net.ipv4.ip_forward,  value: 1}
     
   - name: Create group for docker
     group:
@@ -48,3 +74,7 @@
       groups: docker
       append: yes
     register: docker_user
+
+  handlers:
+    - name: restart sshd
+      service: name=sshd state=restarted
