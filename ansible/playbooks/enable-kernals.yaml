@@ -15,11 +15,8 @@
       - iptable_raw
       - nf_conntrack_netlink
       - nf_conntrack
-      - nf_conntrack_ipv4
       - nf_defrag_ipv4
-      - nf_nat
-      - nf_nat_ipv4
-      - nf_nat_masquerade_ipv4
+      - nf_nat     
       - nfnetlink
       - udp_tunnel
       - veth
