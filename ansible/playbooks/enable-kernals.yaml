@@ -1,6 +1,7 @@
 ---
 - name: Load RKE kernel modules
   hosts: k8s
+  become: yes
   vars:
     kernel_modules:
       - br_netfilter
