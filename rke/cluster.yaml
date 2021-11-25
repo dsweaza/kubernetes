@@ -1,0 +1,81 @@
+nodes:
+  - address: us20-k8c-01.dylanlab.xyz
+    user: ansible
+    ssh_key_path: ~/.ssh/ansible_id_rsa
+    role:
+      - controlplane
+      - etcd
+  
+  - address: us20-k8c-02.dylanlab.xyz
+    user: ansible
+    ssh_key_path: ~/.ssh/ansible_id_rsa
+    role:
+      - controlplane
+      - etcd
+
+  - address: us20-k8w-01.dylanlab.xyz
+    user: ansible
+    ssh_key_path: ~/.ssh/ansible_id_rsa
+    role:
+      - worker
+
+  - address: us20-k8w-02.dylanlab.xyz
+    user: ansible
+    ssh_key_path: ~/.ssh/ansible_id_rsa
+    role:
+      - worker
+
+  - address: us20-k8w-03.dylanlab.xyz
+    user: ansible
+    ssh_key_path: ~/.ssh/ansible_id_rsa
+    role:
+      - worker
+
+  - address: us20-k8w-04.dylanlab.xyz
+    user: ansible
+    ssh_key_path: ~/.ssh/ansible_id_rsa
+    role:
+      - worker
+
+services:
+  etcd:
+  kube-api:
+    service_cluster_ip_range: 172.16.0.0/16
+    service_node_port_range: ""
+    pod_security_policy: true
+    always_pull_images: false
+    secrets_encryption_config: null
+    audit_log: null
+    admission_configuration: null
+    event_rate_limit: null
+    extra_args:
+      kubelet-preferred-address-types: "Hostname,InternalIP,ExternalIP"
+  kube-controller:
+    cluster_cidr: 172.20.0.0/16
+    service_cluster_ip_range: 172.16.0.0/16
+  scheduler:
+  kubelet:
+    cluster_domain: cluster.k8s.dylanlab.xyz
+    infra_container_image: ""
+    cluster_dns_server: 172.16.0.10
+    fail_swap_on: false
+    generate_serving_certificate: true
+  kubeproxy:
+network:
+  plugin: canal
+  options: {}
+  mtu: 0
+  node_selector: {}
+  update_strategy: null
+ingress:
+  provider: none
+authentication:
+  strategy: x509
+  sans:
+    - "api.k8s.dylanlab.xyz"
+  webhook: null
+authorization:
+  mode: rbac
+  options: {}
+ignore_docker_version: false
+cluster_name: ""
