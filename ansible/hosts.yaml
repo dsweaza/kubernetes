@@ -15,7 +15,7 @@ all:
         children: 
           k8s_controllers:
             hosts:
-              us20-k8c-[01:02].dylanlab.xyz:
+              us20-k8c-[01:03].dylanlab.xyz:
 
           k8s_workers:
             hosts:
