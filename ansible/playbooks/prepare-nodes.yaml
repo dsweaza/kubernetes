@@ -15,19 +15,44 @@
     apt:
       update_cache: yes
   
-  - name: Install Apt Packages
+  - name: Remove older docker versions if present
     apt:
-      name:
-        - ca-certificates
-        - gnupg
-        - curl
-        - lsb-release
-        
-  - name: Add Docker GPG Key
-    shell: curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
-    
-  - name: Setup stable rep
-    shell: echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+      pkg: '{{item}}'
+      state: absent
+    with_items:
+      - docker-ce 
+      - docker-ce-cli 
+      - containerd.io
+
+  - name: Ensure packages to allow apt to use repository over HTTPS
+    apt:
+      name: "{{ item }}"
+      state: present
+    with_items:
+      - apt-transport-https
+      - ca-certificates
+      - curl
+      - software-properties-common
+
+  - name: Add Docker's official apt key.
+    apt_key:
+      url: https://download.docker.com/linux/ubuntu/gpg
+      id: 9DC858229FC7DD38854AE2D88D81803C0EBFCD88
+      state: present
+    register: add_key
+    ignore_errors: true
+
+  - name: Add Docker apt key if failed
+    shell: "curl -sSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -"
+    args:
+      warn: no
+    when: add_key|failed  
+
+  - name: Add Docker stable repository.
+    apt_repository:
+      repo: "deb [arch=amd64] https://download.docker.com/linux/{{ ansible_distribution|lower }} {{ ansible_distribution_release }} stable"
+      state: present
+      update_cache: yes
   
   - name: Apt Update
     apt:
