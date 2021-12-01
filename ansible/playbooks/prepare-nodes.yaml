@@ -5,7 +5,6 @@
   ignore_errors: yes
   tasks:
   
- 
   - name: Load RKE kernel modules
     vars:
       kernel_modules:
