@@ -13,6 +13,13 @@ nodes:
       - controlplane
       - etcd
 
+  - address: us20-k8c-03.dylanlab.xyz
+    user: ansible
+    ssh_key_path: ~/.ssh/ansible_id_rsa
+    role:
+      - controlplane
+      - etcd
+
   - address: us20-k8w-01.dylanlab.xyz
     user: ansible
     ssh_key_path: ~/.ssh/ansible_id_rsa
