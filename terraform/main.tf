@@ -9,6 +9,9 @@ terraform {
   }
 }
 
+provider "xenorchestra" {
+}
+
 # vm.tf
 data "xenorchestra_pool" "pool" {
   name_label = "xcp-ng-01"
