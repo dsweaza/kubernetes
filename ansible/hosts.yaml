@@ -5,18 +5,10 @@ all:
     ansible_python_interpreter: /usr/bin/python3
 
   children:
-    utilities:
+    k8s_controllers:
       hosts:
-        us20-netbox.dylanlab.xyz:
-        us20-openvpn.dylanlab.xyz:
-        us20-rancher.dylanlab.xyz:
+        us20-k8c-[01:03].dylanlab.xyz:
 
-    k8s:
-      children: 
-        k8s_controllers:
-          hosts:
-            us20-k8c-[01:03].dylanlab.xyz:
-
-        k8s_workers:
-          hosts:
-            us20-k8w-[01:04].dylanlab.xyz:
+    k8s_workers:
+      hosts:
+        us20-k8w-[01:04].dylanlab.xyz:
