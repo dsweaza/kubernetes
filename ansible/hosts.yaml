@@ -7,8 +7,16 @@ all:
   children:
     k8s_controllers:
       hosts:
-        us20-k8c-[01:03].dylanlab.xyz:
+        us20-k8s-c5a98f227df3b70a.dylanlab.xyz:
+        us20-k8s-dcd446af28c47e16.dylanlab.xyz:
+        us20-k8s-42feb740cc39b468.dylanlab.xyz:
+        us20-k8s-f575b45437fd5c77.dylanlab.xyz:
+        us20-k8s-aebacc37ea941b10.dylanlab.xyz:
 
     k8s_workers:
       hosts:
-        us20-k8w-[01:04].dylanlab.xyz:
+        us20-k8s-8263b7fa52d8f4f5.dylanlab.xyz:
+        us20-k8s-36efefec4650b9c0.dylanlab.xyz:
+        us20-k8s-bc36c102d15f147a.dylanlab.xyz:
+        us20-k8s-ae4b5ca8da83dcf7.dylanlab.xyz:
+        us20-k8s-e0a267c20fe4320a.dylanlab.xyz:

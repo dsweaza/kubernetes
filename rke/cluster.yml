@@ -1,48 +1,60 @@
 nodes:
-  - address: us20-k8c-01.dylanlab.xyz
+  - address: us20-k8s-c5a98f227df3b70a.dylanlab.xyz
     user: ansible
-    ssh_key_path: ~/.ssh/ansible_id_rsa
     role:
       - controlplane
       - etcd
   
-  - address: us20-k8c-02.dylanlab.xyz
+  - address: us20-k8s-dcd446af28c47e16.dylanlab.xyz
     user: ansible
-    ssh_key_path: ~/.ssh/ansible_id_rsa
     role:
       - controlplane
       - etcd
 
-  - address: us20-k8c-03.dylanlab.xyz
+  - address: us20-k8s-42feb740cc39b468.dylanlab.xyz
     user: ansible
-    ssh_key_path: ~/.ssh/ansible_id_rsa
     role:
       - controlplane
       - etcd
 
-  - address: us20-k8w-01.dylanlab.xyz
+  - address: us20-k8s-f575b45437fd5c77.dylanlab.xyz
     user: ansible
-    ssh_key_path: ~/.ssh/ansible_id_rsa
+    role:
+      - controlplane
+      - etcd
+
+  - address: us20-k8s-aebacc37ea941b10.dylanlab.xyz
+    user: ansible
+    role:
+      - controlplane
+      - etcd
+
+  - address: us20-k8s-8263b7fa52d8f4f5.dylanlab.xyz
+    user: ansible
     role:
       - worker
 
-  - address: us20-k8w-02.dylanlab.xyz
+  - address: us20-k8s-36efefec4650b9c0.dylanlab.xyz
     user: ansible
-    ssh_key_path: ~/.ssh/ansible_id_rsa
     role:
       - worker
 
-  - address: us20-k8w-03.dylanlab.xyz
+  - address: us20-k8s-bc36c102d15f147a.dylanlab.xyz
     user: ansible
-    ssh_key_path: ~/.ssh/ansible_id_rsa
     role:
       - worker
 
-  - address: us20-k8w-04.dylanlab.xyz
+  - address: us20-k8s-ae4b5ca8da83dcf7.dylanlab.xyz
     user: ansible
-    ssh_key_path: ~/.ssh/ansible_id_rsa
     role:
       - worker
+  
+  - address: us20-k8s-e0a267c20fe4320a.dylanlab.xyz
+    user: ansible
+    role:
+      - worker
+
+ssh_key_path: ~/.ssh/ansible_id_rsa
 
 services:
   etcd:
@@ -62,7 +74,7 @@ services:
     service_cluster_ip_range: 172.16.0.0/16
   scheduler:
   kubelet:
-    cluster_domain: cluster.k8s.dylanlab.xyz
+    cluster_domain: k8cluster.dylanlab.xyz
     infra_container_image: ""
     cluster_dns_server: 172.16.0.10
     fail_swap_on: false

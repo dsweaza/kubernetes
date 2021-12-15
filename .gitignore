@@ -34,3 +34,7 @@ terraform.rc
 
 #Ansible
 *.retry
+
+# RKE 
+kube_config_cluster.yml
+*.rkestate
