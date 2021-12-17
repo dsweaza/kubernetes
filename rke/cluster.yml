@@ -1,55 +1,65 @@
 nodes:
-  - address: us20-k8s-c5a98f227df3b70a.dylanlab.xyz
+  - address: us20-02e133deac5f1a78.k8s.dylanlab.xyz
+    internal_address: 10.1.155.176
     user: ansible
     role:
       - controlplane
       - etcd
   
-  - address: us20-k8s-dcd446af28c47e16.dylanlab.xyz
+  - address: us20-7ccf2820694a4bdd.k8s.dylanlab.xyz
+    internal_address: 10.1.155.180
     user: ansible
     role:
       - controlplane
       - etcd
 
-  - address: us20-k8s-42feb740cc39b468.dylanlab.xyz
+  - address: us20-52d9ab7fd2c751be.k8s.dylanlab.xyz
+    internal_address: 10.1.155.175
     user: ansible
     role:
       - controlplane
       - etcd
 
-  - address: us20-k8s-f575b45437fd5c77.dylanlab.xyz
+  - address: us20-bedcbdc6f86fbaa2.k8s.dylanlab.xyz
+    internal_address: 10.1.155.181
     user: ansible
     role:
       - controlplane
       - etcd
 
-  - address: us20-k8s-aebacc37ea941b10.dylanlab.xyz
+  - address: us20-aace87aea8da1334.k8s.dylanlab.xyz
+    internal_address: 10.1.155.174
     user: ansible
     role:
       - controlplane
       - etcd
 
-  - address: us20-k8s-8263b7fa52d8f4f5.dylanlab.xyz
+  - address: us20-93df34803a4ff4bf.k8s.dylanlab.xyz
+    internal_address: 10.1.155.177
     user: ansible
     role:
       - worker
 
-  - address: us20-k8s-36efefec4650b9c0.dylanlab.xyz
+  - address: us20-9a6c82c7a4dca1ce.k8s.dylanlab.xyz
+    internal_address: 10.1.155.178
     user: ansible
     role:
       - worker
 
-  - address: us20-k8s-bc36c102d15f147a.dylanlab.xyz
+  - address: us20-da8aa122c990384e.k8s.dylanlab.xyz
+    internal_address: 10.1.155.179
     user: ansible
     role:
       - worker
 
-  - address: us20-k8s-ae4b5ca8da83dcf7.dylanlab.xyz
+  - address: us20-8784f0f5e1cd6510.k8s.dylanlab.xyz
+    internal_address: 10.1.155.182
     user: ansible
     role:
       - worker
   
-  - address: us20-k8s-e0a267c20fe4320a.dylanlab.xyz
+  - address: us20-1117138971f91d97.k8s.dylanlab.xyz
+    internal_address: 10.1.155.173
     user: ansible
     role:
       - worker
@@ -74,7 +84,7 @@ services:
     service_cluster_ip_range: 172.16.0.0/16
   scheduler:
   kubelet:
-    cluster_domain: k8cluster.dylanlab.xyz
+    cluster_domain: k8s.dylanlab.xyz
     infra_container_image: ""
     cluster_dns_server: 172.16.0.10
     fail_swap_on: false
@@ -92,6 +102,7 @@ authentication:
   strategy: x509
   sans:
     - "api.k8s.dylanlab.xyz"
+    - "lb.dylanlab.xyz"
   webhook: null
 authorization:
   mode: rbac

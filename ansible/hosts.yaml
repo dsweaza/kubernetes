@@ -3,20 +3,21 @@ all:
     ansible_user: ansible
     ansible_ssh_private_key_file: ~/.ssh/ansible_id_rsa
     ansible_python_interpreter: /usr/bin/python3
+    ansible_ssh_common_args: "-o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null" 
 
   children:
     k8s_controllers:
       hosts:
-        us20-k8s-c5a98f227df3b70a.dylanlab.xyz:
-        us20-k8s-dcd446af28c47e16.dylanlab.xyz:
-        us20-k8s-42feb740cc39b468.dylanlab.xyz:
-        us20-k8s-f575b45437fd5c77.dylanlab.xyz:
-        us20-k8s-aebacc37ea941b10.dylanlab.xyz:
+        us20-02e133deac5f1a78.k8s.dylanlab.xyz:
+        us20-7ccf2820694a4bdd.k8s.dylanlab.xyz:
+        us20-52d9ab7fd2c751be.k8s.dylanlab.xyz:
+        us20-bedcbdc6f86fbaa2.k8s.dylanlab.xyz:
+        us20-aace87aea8da1334.k8s.dylanlab.xyz:
 
     k8s_workers:
       hosts:
-        us20-k8s-8263b7fa52d8f4f5.dylanlab.xyz:
-        us20-k8s-36efefec4650b9c0.dylanlab.xyz:
-        us20-k8s-bc36c102d15f147a.dylanlab.xyz:
-        us20-k8s-ae4b5ca8da83dcf7.dylanlab.xyz:
-        us20-k8s-e0a267c20fe4320a.dylanlab.xyz:
+        us20-93df34803a4ff4bf.k8s.dylanlab.xyz:
+        us20-9a6c82c7a4dca1ce.k8s.dylanlab.xyz:
+        us20-da8aa122c990384e.k8s.dylanlab.xyz:
+        us20-8784f0f5e1cd6510.k8s.dylanlab.xyz:
+        us20-1117138971f91d97.k8s.dylanlab.xyz:

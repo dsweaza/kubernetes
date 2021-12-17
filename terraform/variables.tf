@@ -12,7 +12,7 @@ variable "vm_count_workers" {
 
 variable "vm_name_prefix" {
     type = string 
-    default = "us20-k8s"
+    default = "us20-"
 }
 
 variable "vm_disk_size_gb" {
