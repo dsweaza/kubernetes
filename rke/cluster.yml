@@ -1,65 +1,65 @@
 nodes:
-  - address: us20-02e133deac5f1a78.k8s.dylanlab.xyz
-    internal_address: 10.1.155.176
+  - address: us20-71bb31381ab1e05b.k8s.dylanlab.xyz
+    internal_address: 10.1.155.169
     user: ansible
     role:
       - controlplane
       - etcd
   
-  - address: us20-7ccf2820694a4bdd.k8s.dylanlab.xyz
-    internal_address: 10.1.155.180
+  - address: us20-885613bd77f87422.k8s.dylanlab.xyz
+    internal_address: 10.1.155.162
     user: ansible
     role:
       - controlplane
       - etcd
 
-  - address: us20-52d9ab7fd2c751be.k8s.dylanlab.xyz
-    internal_address: 10.1.155.175
+  - address: us20-c075adb37fa168fd.k8s.dylanlab.xyz
+    internal_address: 10.1.155.164
     user: ansible
     role:
       - controlplane
       - etcd
 
-  - address: us20-bedcbdc6f86fbaa2.k8s.dylanlab.xyz
-    internal_address: 10.1.155.181
+  - address: us20-3bcb8830e2df65c6.k8s.dylanlab.xyz
+    internal_address: 10.1.155.167
     user: ansible
     role:
       - controlplane
       - etcd
 
-  - address: us20-aace87aea8da1334.k8s.dylanlab.xyz
-    internal_address: 10.1.155.174
+  - address: us20-d839d22448c1c3fa.k8s.dylanlab.xyz
+    internal_address: 10.1.155.163
     user: ansible
     role:
       - controlplane
       - etcd
 
-  - address: us20-93df34803a4ff4bf.k8s.dylanlab.xyz
-    internal_address: 10.1.155.177
+  - address: us20-59a435e1df8204a9.k8s.dylanlab.xyz
+    internal_address: 10.1.155.168
     user: ansible
     role:
       - worker
 
-  - address: us20-9a6c82c7a4dca1ce.k8s.dylanlab.xyz
-    internal_address: 10.1.155.178
+  - address: us20-0231325d96098500.k8s.dylanlab.xyz
+    internal_address: 10.1.155.166
     user: ansible
     role:
       - worker
 
-  - address: us20-da8aa122c990384e.k8s.dylanlab.xyz
-    internal_address: 10.1.155.179
+  - address: us20-932f53fbb357a9e3.k8s.dylanlab.xyz
+    internal_address: 10.1.155.161
     user: ansible
     role:
       - worker
 
-  - address: us20-8784f0f5e1cd6510.k8s.dylanlab.xyz
-    internal_address: 10.1.155.182
+  - address: us20-be6e097f91b63052.k8s.dylanlab.xyz
+    internal_address: 10.1.155.160
     user: ansible
     role:
       - worker
   
-  - address: us20-1117138971f91d97.k8s.dylanlab.xyz
-    internal_address: 10.1.155.173
+  - address: us20-23ee3bcc2181d617.k8s.dylanlab.xyz
+    internal_address: 10.1.155.165
     user: ansible
     role:
       - worker

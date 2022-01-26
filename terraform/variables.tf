@@ -1,5 +1,15 @@
 # Set these variables in environment or terraform.tfvars
 
+variable "vm_name_prefix" {
+    type = string 
+    default = "us20-"
+}
+
+variable "vm_name_suffix" {
+    type = string
+    default = "k8s.dylanlab.xyz"
+}
+
 variable "vm_count_controllers" {
     type = number
     default = 5
@@ -8,11 +18,6 @@ variable "vm_count_controllers" {
 variable "vm_count_workers" {
     type = number
     default = 5
-}
-
-variable "vm_name_prefix" {
-    type = string 
-    default = "us20-"
 }
 
 variable "vm_disk_size_gb" {

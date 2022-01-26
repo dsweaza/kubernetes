@@ -14,16 +14,11 @@ provider "dns" {
 ## Data
 
 data "xenorchestra_pool" "pool" {
-  name_label = "xcp-ng-01"
+  name_label = "xcp-ng-pool-01"
 }
 
 data "xenorchestra_template" "vm_template" {
-  name_label = "ubuntu-focal-20.04-cloudimg-20211202-iscsi"
-}
-
-data "xenorchestra_sr" "sr" {
-  name_label = "Local storage"
-  pool_id = data.xenorchestra_pool.pool.id
+  name_label = "ubuntu-focal-20.04-cloudimg-20220124"
 }
 
 data "xenorchestra_sr" "iscsi" {
@@ -51,7 +46,7 @@ resource "xenorchestra_cloud_config" "controllers" {
   name = "cloud config name"
   template = <<EOF
 #cloud-config
-hostname: ${var.vm_name_prefix}${random_id.controllers[count.index].hex}.k8s.dylanlab.xyz
+hostname: ${var.vm_name_prefix}${random_id.controllers[count.index].hex}.${var.vm_name_suffix}
 users:
   - name: ${var.username_admin}
     gecos: ${var.username_admin}
@@ -80,7 +75,7 @@ resource "xenorchestra_vm" "controllers" {
 
     memory_max = var.vm_memory_size_gb * 1024 * 1024 * 1024 # GB to B
     cpus = var.vm_cpu_count
-    name_label = "${var.vm_name_prefix}${random_id.controllers[count.index].hex}"
+    name_label = "${var.vm_name_prefix}${random_id.controllers[count.index].hex}.${var.vm_name_suffix}"
     name_description = "Ubuntu 20.04 Kubernetes controller node"
     template = data.xenorchestra_template.vm_template.id
     cloud_config = xenorchestra_cloud_config.controllers[count.index].template
@@ -120,7 +115,7 @@ resource "xenorchestra_cloud_config" "workers" {
   name = "cloud config name"
   template = <<EOF
 #cloud-config
-hostname: ${var.vm_name_prefix}${random_id.workers[count.index].hex}
+hostname: ${var.vm_name_prefix}${random_id.workers[count.index].hex}.${var.vm_name_suffix}
 users:
   - name: ${var.username_admin}
     gecos: ${var.username_admin}
@@ -150,7 +145,7 @@ resource "xenorchestra_vm" "workers" {
 
     memory_max = var.vm_memory_size_gb * 1024 * 1024 * 1024 # GB to B
     cpus = var.vm_cpu_count
-    name_label = "${var.vm_name_prefix}${random_id.workers[count.index].hex}"
+    name_label = "${var.vm_name_prefix}${random_id.workers[count.index].hex}.${var.vm_name_suffix}"
     name_description = "Ubuntu 20.04 Kubernetes worker node"
     template = data.xenorchestra_template.vm_template.id
     cloud_config = xenorchestra_cloud_config.workers[count.index].template
